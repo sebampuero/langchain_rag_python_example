@@ -15,6 +15,9 @@ from langchain_core.runnables.history import RunnableWithMessageHistory
 from langchain_community.chat_message_histories.redis import RedisChatMessageHistory
 from chromadb.errors import InvalidDimensionException
 from server.prompts import contextualize_q_system_prompt, system_prompt
+import logging
+
+logger = logging.getLogger("ChatGPT")
 
 class LangchainHandler:
     _instance = None
@@ -26,7 +29,8 @@ class LangchainHandler:
     
     def __init__(self, *args, **kwargs):
         if not hasattr(self, '_initialized'):
-            print("Initializing model and embeddings")
+            logger.info("Initializing model and embeddings")
+            logger.debug(f"Loaded prompts: {contextualize_q_system_prompt} and \n\nSystem:{system_prompt}")
             self._load_model()
             self._load_pdfs()
             self._load_embedding()
@@ -40,10 +44,12 @@ class LangchainHandler:
         self.model = ChatVertexAI(model=os.environ.get("CHAT_MODEL", "gemini-1.0-pro"),
                 temperature=0,
                 max_tokens=4000)
+        logger.debug(f"Created model {self.model}")
 
     def _load_pdfs(self):
         docs = PyPDFDirectoryLoader(os.environ.get("PDFS_PATH", "resources/pdfs"))
         docs = docs.load()
+        logger.debug(f"Read PDFS: {docs}")
         self.docs = docs
 
     def _load_embedding(self):
@@ -86,6 +92,7 @@ class LangchainHandler:
                 ("human", "{input}"),
             ]
         )
+        logger.debug(f"Created qa_prompt {qa_prompt}")
         question_answer_chain = create_stuff_documents_chain(self.model, qa_prompt)
         rag_chain = create_retrieval_chain(history_aware_retriever, question_answer_chain)
         self.conversational_rag_chain = RunnableWithMessageHistory(
@@ -97,6 +104,7 @@ class LangchainHandler:
         )
 
     async def prompt(self, input: str, session_id: str) -> AsyncIterator[Any]:
+        logger.debug(f"Calling rag with session_id {session_id}")
         return self.conversational_rag_chain.astream({"input": input},
                     config={
                         "configurable": {"session_id": session_id}

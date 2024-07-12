@@ -110,3 +110,4 @@ dmypy.json
 
 resources/
 venv/
+start.sh
