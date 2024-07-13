@@ -10,6 +10,7 @@ from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.prompts.chat import MessagesPlaceholder
 from langchain_google_vertexai import ChatVertexAI
+from langchain_openai import ChatOpenAI
 from langchain.chains import create_history_aware_retriever
 from langchain_core.runnables.history import RunnableWithMessageHistory
 from langchain_community.chat_message_histories.redis import RedisChatMessageHistory
@@ -40,8 +41,8 @@ class LangchainHandler:
             self._initialized = True
 
     def _load_model(self):
-        vertexai.init(project=os.environ.get("PROJECT"), location=os.environ.get("LOCATION"))
-        self.model = ChatVertexAI(model=os.environ.get("CHAT_MODEL", "gemini-1.0-pro"),
+        #vertexai.init(project=os.environ.get("PROJECT"), location=os.environ.get("LOCATION"))
+        self.model = ChatOpenAI(model=os.environ.get("CHAT_MODEL"),
                 temperature=0,
                 max_tokens=4000)
         logger.debug(f"Created model {self.model}")
