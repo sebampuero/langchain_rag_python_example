@@ -4,7 +4,7 @@ from langchain_community.embeddings import OllamaEmbeddings
 from langchain_community.vectorstores import Chroma
 import os
 import vertexai
-from langchain_community.document_loaders import PyPDFDirectoryLoader
+from langchain_community.document_loaders import S3DirectoryLoader
 from langchain.chains import create_retrieval_chain
 from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain_core.prompts import ChatPromptTemplate
@@ -17,7 +17,7 @@ from chromadb.errors import InvalidDimensionException
 from server.prompts import contextualize_q_system_prompt, system_prompt
 import logging
 
-logger = logging.getLogger("ChatGPT")
+logger = logging.getLogger("Langchain")
 
 class LangchainHandler:
     _instance = None
@@ -47,9 +47,9 @@ class LangchainHandler:
         logger.debug(f"Created model {self.model}")
 
     def _load_pdfs(self):
-        docs = PyPDFDirectoryLoader(os.environ.get("PDFS_PATH", "resources/pdfs"))
-        docs = docs.load()
-        logger.debug(f"Read PDFS: {docs}")
+        docs_pdf = S3DirectoryLoader(os.environ.get("S3_BUCKET", "sebampuerombucket"), prefix="doc")
+        docs = docs_pdf.load()
+        logger.debug(f"Read documents: {docs}")
         self.docs = docs
 
     def _load_embedding(self):

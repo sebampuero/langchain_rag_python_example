@@ -19,7 +19,7 @@
       },
       "file": {
         "class": "logging.handlers.RotatingFileHandler",
-        "level": "INFO",
+        "level": "DEBUG",
         "formatter": "detailed",
         "filename": "log.log",
         "maxBytes": 100000,
@@ -33,6 +33,14 @@
           "stderr",
           "file"
         ]
-      }
+      },
+      "Langchain": {
+      "level": "DEBUG",
+      "handlers": [
+        "stderr",
+        "file"
+      ],
+      "propagate": false
+     }
     }
   }

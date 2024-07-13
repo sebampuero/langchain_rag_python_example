@@ -7,7 +7,7 @@ import time
 import logging
 
 router = APIRouter()
-logger = logging.getLogger("ChatGPT")
+logger = logging.getLogger("Langchain")
 
 
 @router.post("/prompt", response_class=StreamingResponse, responses={
