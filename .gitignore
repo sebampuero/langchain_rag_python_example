@@ -111,3 +111,4 @@ dmypy.json
 resources/
 venv/
 start.sh
+kill.sh
