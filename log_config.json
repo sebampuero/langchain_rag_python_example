@@ -24,6 +24,12 @@
         "filename": "log.log",
         "maxBytes": 100000,
         "backupCount": 3
+      },
+      "stdout": {
+          "class": "logging.StreamHandler",
+          "level": "DEBUG",
+          "formatter": "detailed",
+          "stream": "ext://sys.stdout"
       }
     },
     "loggers": {
@@ -31,15 +37,15 @@
         "level": "INFO",
         "handlers": [
           "stderr",
-          "file"
+          "stdout"
         ]
       },
       "Langchain": {
-      "level": "DEBUG",
-      "handlers": [
-        "stderr",
-        "file"
-      ],
+        "level": "DEBUG",
+        "handlers": [
+          "stderr",
+          "stdout"
+        ],
       "propagate": false
      }
     }
