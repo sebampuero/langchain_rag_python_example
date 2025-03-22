@@ -211,7 +211,7 @@ python-dotenv==1.0.1
 python-iso639==2024.4.27
 python-json-logger==2.0.7
 python-magic==0.4.27
-python-multipart==0.0.9
+python-multipart==0.0.20
 pytz==2024.1
 PyYAML==6.0.1
 pyzmq==26.0.3
