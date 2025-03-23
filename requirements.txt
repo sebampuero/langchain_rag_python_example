@@ -116,7 +116,7 @@ langchain-google-vertexai==1.0.5
 langchain-openai==0.1.8
 langchain-text-splitters==0.2.1
 langdetect==1.0.9
-langsmith==0.1.75
+langsmith==0.3.17
 layoutparser==0.3.4
 lxml==5.2.2
 markdown-it-py==3.0.0
