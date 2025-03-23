@@ -1,6 +1,6 @@
 from typing import Any, AsyncIterator
 from langchain_text_splitters import RecursiveCharacterTextSplitter
-from langchain_community.embeddings import OllamaEmbeddings
+from langchain_ollama import OllamaEmbeddings
 from langchain_community.vectorstores import Chroma
 import os
 from langchain_community.document_loaders import S3DirectoryLoader
@@ -53,7 +53,8 @@ class LangchainHandler:
 
     def _load_embedding(self):
         self.embedding = OllamaEmbeddings(
-            model=os.environ.get("EMBED_MODEL", "nomic-embed-text")
+            model=os.environ.get("EMBED_MODEL", "nomic-embed-text"),
+            base_url=os.environ.get("OLLAMA_HOST")
         )
     
     def _split_documents(self):
