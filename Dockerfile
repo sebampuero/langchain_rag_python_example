@@ -13,7 +13,7 @@ ENV PATH="/opt/venv/bin:$PATH"
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 COPY . .
-COPY langchain/libs/community/langchain_community /opt/venv/lib/python3.11/site-packages/langchain_community
+#COPY langchain/libs/community/langchain_community /opt/venv/lib/python3.11/site-packages/langchain_community
 
 RUN useradd -m myuser
 RUN chown -R myuser:myuser /app
