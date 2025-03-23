@@ -56,7 +56,7 @@ frozenlist==1.4.1
 fsspec==2024.6.0
 google-ai-generativelanguage==0.6.4
 google-api-core==2.19.0
-google-api-python-client==2.133.0
+google-api-python-client==2.165.0
 google-auth==2.30.0
 google-auth-httplib2==0.2.0
 google-cloud-aiplatform==1.55.0
@@ -211,7 +211,7 @@ python-dotenv==1.0.1
 python-iso639==2024.4.27
 python-json-logger==2.0.7
 python-magic==0.4.27
-python-multipart==0.0.9
+python-multipart==0.0.20
 pytz==2024.1
 PyYAML==6.0.1
 pyzmq==26.0.3
@@ -260,7 +260,7 @@ typing-inspect==0.9.0
 typing_extensions==4.12.2
 tzdata==2024.1
 ujson==5.10.0
-unstructured==0.14.10
+unstructured==0.17.2
 unstructured-client==0.24.1
 unstructured-inference==0.7.36
 unstructured.pytesseract==0.3.12
