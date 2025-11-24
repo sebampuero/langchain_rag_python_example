@@ -202,7 +202,7 @@ pydantic==2.10.6
 pydantic_core==2.27.2
 Pygments==2.18.0
 pyparsing==3.1.2
-pypdf==5.4.0
+pypdf==6.1.2
 pypdfium2==4.30.0
 PyPika==0.48.9
 pyproject_hooks==1.1.0
