@@ -19,6 +19,4 @@ RUN useradd -m myuser
 RUN chown -R myuser:myuser /app
 USER myuser
 
-ENV OLLAMA_HOST=http://192.168.0.7:11434
-
 CMD ["python3", "src/main.py"]
